@@ -57,7 +57,7 @@ A website to view and modify a collection of various items.
     * Refactor as needed
 
 4. Item Types tests:
-    * Add two tests, lookup first one.
+    * save(): Add two item types, lookup first one, verify first and retrieved are the same.
     * getAll: retrieve two
     * (For later) Allow deletion if not linked in Items
 
