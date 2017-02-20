@@ -52,16 +52,16 @@ A website to view and modify a collection of various items.
     * Add empty classes Item, ItemType (src/).
 
 3. Iterate between:
-   * Add tests (tests/)
-   * Enhance functionality (src/)
-   * Refactor as needed
+    * Add tests (tests/)
+    * Enhance functionality (src/)
+    * Refactor as needed
 
- 4. Item Types tests:
+4. Item Types tests:
     * Add two tests, lookup first one.
     * getAll: retrieve two
     * (For later) Allow deletion if not linked in Items
 
- 5. Items tests:
+5. Items tests:
     * Add item with item type
     * Delete item: add two delete first
     * (For later) change item type
