@@ -1,6 +1,6 @@
 <?php
     require_once 'src/ItemType.php';
-
+    
     /**
     * @backupGlobals disabled
     * @backupStaticAttributes disabled
@@ -35,7 +35,7 @@
             // Arrange
             $id1 = $type1->getId();
             var_dump($id1);
-            
+
             // Act
             $type2->save();
 
@@ -43,6 +43,25 @@
 
             //Assert
             $this->assertEquals($type1, $type1_retrieved);
+        }
+
+        function test_getAll()
+        {
+            // Arrange
+            $description1 = 'My new type';
+            $type1 = new ItemType($description1);
+
+            $description2 = 'My other one';
+            $type2 = new ItemType($description2);
+
+            // Act
+            $type1->save();
+            $type2->save();
+
+            $item_types_retrieved = ItemType::getAll();
+
+            //Assert
+            $this->assertEquals([$type1,$type2], $item_types_retrieved);
         }
     }
 ?>

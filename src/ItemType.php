@@ -35,27 +35,37 @@
         static function retrieveById($id)
         {
             $retrieved = null;
-
             $returned_item_types = $GLOBALS['DB']->query("SELECT * FROM item_types WHERE id = $id;");
-
-
-            foreach($returned_item_types as $item_type)
-            {
-                $retrieved = new ItemType (
-                    $item_type['description'],
-                    $item_type['id']
-                );
-
+            if ($returned_item_types) {
+                foreach($returned_item_types as $item_type)
+                {
+                    $retrieved = new ItemType (
+                        $item_type['description'],
+                        $item_type['id']
+                    );
+                }
             }
-
-
             return $retrieved;
         }
 
         static function getAll()
         {
-
+            $output = array();
+            $returned_item_types = $GLOBALS['DB']->query("SELECT * FROM item_types;");
+            if ($returned_item_types) {
+                foreach ($returned_item_types as $item_type) {
+                    array_push(
+                        $output,
+                        new ItemType(
+                            $item_type['description'],
+                            $item_type['id']
+                        )
+                    );
+                }
+            }
+            return $output;
         }
+
         static function deleteAll()
         {
             $GLOBALS['DB']->exec('DELETE FROM item_types;');
