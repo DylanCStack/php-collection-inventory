@@ -16,8 +16,11 @@
             return $this->id;
         }
 
-        function getItemType(){
+        function getItemTypeID(){
             return $this->item_type_id;
+        }
+
+        function getItemType(){
         }
 
         function getDescription(){
@@ -38,13 +41,34 @@
 
         function save()
         {
+            $GLOBALS['DB']->exec(
+                "INSERT INTO items (description, item_type_id) VALUES " .
+                "('{$this->getDescription()}', '{$this->getItemTypeID()}');"
+            );
+            $this->setId($GLOBALS['DB']->lastInsertId());
+        }
 
+        static function retrieveById($id)
+        {
+            $retreived_item = null;
+            $returned_object = $GLOBALS['DB']->query("SELECT * FROM items WHERE id = $id;");
+            if ($returned_object) {
+                foreach ($returned_object as $returned_item) {
+                    $retreived_item = new Item(
+                        $returned_item['description'],
+                        $returned_item['item_type_id'],
+                        $returned_item['id']
+                    );
+                }
+            }
+            return $retreived_item;
         }
 
         static function getAll()
         {
 
         }
+
         static function deleteAll()
         {
 
